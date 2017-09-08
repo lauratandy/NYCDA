@@ -1,0 +1,85 @@
+======= ======= CSS positioning ======= =======
+
+== overview ==
+Positioning
+    interacting parameters
+        - margin: __px auto;
+        - display: block;
+        - floats
+        - width -- does element have room to float?
+    divs
+        - CSS workhorse positioning container elements
+The Box Model
+    element/padding/border/margin
+Display Types
+    - block -- default for div, p, other elements
+    - inline -- reduced styling options (no height/width properties)
+    - inline-block -- combination
+    - none -- hides element
+    - flex -- enhanced control of container elements
+    - table-cell -- forces table-like behavior
+Floats
+    - elements removed from flow
+
+== tools ==
+pesticide
+    - google search
+    - chrome extension (install)
+    - activate to inspect page
+
+inspector
+    CTRL/CLICK element to inspect
+    html code/elements
+    css code/styles
+    box model values (element/padding/border/margin)
+
+== built-in properties ==
+p tags
+    - more than meets the eye
+    - built-in top/bottom margins
+    - block display (100% width)
+
+== centering content ==
+margin auto
+    - creates equal space on both sides of element
+    - does NOT work for height (calculation based on width only)
+
+== block display ==
+block level elements (<p>, <div>) have a line break *before & after*
+*float: left* on block elements:
+    - removes element from normal flow
+    - removes line-breaks before and after
+    - causes other page content to flow around
+    - block elements that follow floated elements do not flow around due to *before line-break*
+
+== divs ==
+size
+    width
+    height
+units
+    px -- pixels
+    % -- percentage of parent
+    em -- multiple of element font size
+        allows scalable fonts
+        default font = 16px
+        set body font size to specify different value (e.g. body { font-size: 20px; })
+        1em = element font size (1 * 16px = 16px)
+        2em = 2 x element font size (2 * 16px = 32px)
+        1.2em = 1.2 x element font size (1.2 * 16px = 19.2px)
+
+== Positioning ==
+• statically positioned elements ignore the z-index property (must be relative, etc.)
+• inline elements do not have height/width properties (height collapses, width matches element)
+• inline-block elements do not have height properties
+• center content: margin: 0 auto;
+
+== box sizing ==
+• apply border-box sizing to all elements for multiple browsers
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+== position ==
+• static, relative, absolute, fixed

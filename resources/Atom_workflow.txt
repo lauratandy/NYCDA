@@ -1,0 +1,48 @@
+======= install atom shell commands from Atom application =======
+TRY THIS METHOD FIRST
+• open atom (if it's not already open)
+• select Atom > Install Shell Commands from the menu
+• Atom will install commands to enable command line launch
+  (note: you may need to quit atom and restart)
+• test the installation by opening a project in atom:
+    - navigate to project folder
+    - enter this command (the period means "open everything in file"):
+        $ atom .
+    - you can also open specific files/folders:
+        $ atom <filename>
+        $ atom <foldername>
+
+
+======= install atom shell commands from command line =======
+TRY THIS IS METHOD 1 FAILS
+• navigate to top user level
+    $ cd ~
+
+• navigate two levels up from there (may be one or three levels... go to highest available)
+    $ cd ..
+    $ cd ..
+    $ cd ..
+
+• list files/directories at that level
+    $ ls
+        <many files>
+
+• look for usr directory and navigate to it
+    $ cd usr
+
+• look for local directory and navigate to it
+    $ cd local
+
+• look for bin directory and navigate to it
+    $ cd bin
+
+• look for an atom file in the bin directory
+    $ ls
+        Magick++-config				import
+        apm					        linkicc
+        applygeo				    listen
+        atom					    listgeo
+        autoconf				    lprsetup.sh
+
+• if you don't see atom, copy and paste this line into the command line:
+    $ ln -s /Applications/Atom.app/Contents/Resources/app/atom.sh /usr/local/bin/atom

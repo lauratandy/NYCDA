@@ -1,0 +1,53 @@
+
+/* ======= ======= ======= general ======= ======= ======= */
+html, body {
+    height: 100%;
+}
+body {
+    font-family: "Ariel", sans-serif;
+}
+
+/* ======= ======= =======  sections  ======= ======= ======= */
+.section {
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid purple;
+}
+
+/* ======= header ======= */
+#header {
+  height: 40px;
+    background-color: #eee;
+}
+
+/* ======= container ======= */
+#container {
+    height: 60px;
+    background-color: Moccasin;
+    border: 2px solid darkorange;
+}
+
+<div id="container" class="section">
+  <div id="menu">
+  textcolor: white
+  text-align: center;
+    <div id="Home class="menu-item"></div>
+    <div class="menu-item">Profile</div>
+    <div class="menu-item">Portfolio</div>
+  </div>
+</div>
+
+/* ======= footer ======= */
+#footer {
+  background-color: #eee;
+}
+
+
+
+
+
+
+
+/* ======= ======= ======= ARCHIVE ======= ======= ======= */
+/* ======= ======= ======= ARCHIVE ======= ======= ======= */
+/* ======= ======= ======= ARCHIVE ======= ======= ======= */

@@ -1,0 +1,321 @@
+
+
+/* ======= ======= ======= general ======= ======= ======= */
+<!DOCTYPE html>
+<html lang="en-US" >
+
+<head>
+	<script>
+window.ts_endpoint_url = "https:\/\/slack.com\/beacon\/timing";
+
+(function(e) {
+	var n=Date.now?Date.now():+new Date,r=e.performance||{},t=[],a={},i=function(e,n){for(var r=0,a=t.length,i=[];a>r;r++)t[r][e]==n&&i.push(t[r]);return i},o=function(e,n){for(var r,a=t.length;a--;)r=t[a],r.entryType!=e||void 0!==n&&r.name!=n||t.splice(a,1)};r.now||(r.now=r.webkitNow||r.mozNow||r.msNow||function(){return(Date.now?Date.now():+new Date)-n}),r.mark||(r.mark=r.webkitMark||function(e){var n={name:e,entryType:"mark",startTime:r.now(),duration:0};t.push(n),a[e]=n}),r.measure||(r.measure=r.webkitMeasure||function(e,n,r){n=a[n].startTime,r=a[r].startTime,t.push({name:e,entryType:"measure",startTime:n,duration:r-n})}),r.getEntriesByType||(r.getEntriesByType=r.webkitGetEntriesByType||function(e){return i("entryType",e)}),r.getEntriesByName||(r.getEntriesByName=r.webkitGetEntriesByName||function(e){return i("name",e)}),r.clearMarks||(r.clearMarks=r.webkitClearMarks||function(e){o("mark",e)}),r.clearMeasures||(r.clearMeasures=r.webkitClearMeasures||function(e){o("measure",e)}),e.performance=r,"function"==typeof define&&(define.amd||define.ajs)&&define("performance",[],function(){return r}) // eslint-disable-line
+})(window);
+
+</script>
+<script>
+
+
+;(function() {
+'use strict';
+
+window.TSMark = function(mark_label) {
+	if (!window.performance || !window.performance.mark) return;
+	performance.mark(mark_label);
+};
+window.TSMark('start_load');
+
+
+window.TSMeasureAndBeacon = function(measure_label, start_mark_label) {
+	if (start_mark_label === 'start_nav' && window.performance && window.performance.timing) {
+		window.TSBeacon(measure_label, (new Date()).getTime() - performance.timing.navigationStart);
+		return;
+	}
+	if (!window.performance || !window.performance.mark || !window.performance.measure) return;
+	performance.mark(start_mark_label + '_end');
+	try {
+		performance.measure(measure_label, start_mark_label, start_mark_label + '_end');
+		window.TSBeacon(measure_label, performance.getEntriesByName(measure_label)[0].duration);
+    } catch (e) {
+  	}
+  };
+
+  if ('sendBeacon' in navigator) {
+  	window.TSBeacon = function(label, value) {
+  		var endpoint_url = window.ts_endpoint_url || 'https://slack.com/beacon/timing';
+  		navigator.sendBeacon(endpoint_url + '?data=' + encodeURIComponent(label + ':' + value), '');
+  	};
+  } else {
+  	window.TSBeacon = function(label, value) {
+  		var endpoint_url = window.ts_endpoint_url || 'https://slack.com/beacon/timing';
+  		(new Image()).src = endpoint_url + '?data=' + encodeURIComponent(label + ':' + value);
+  	};
+  }
+  })();
+
+
+
+html, body {
+    height: 100%;
+}
+body {
+    font-family: "Ariel", sans-serif;
+    /*border: 2px solid red;*/
+
+  h2 {
+    font-size: 16;
+    letter-spacing: -3px;
+    color: purple
+  }
+
+  p {
+    color: purple
+  }
+}
+
+/* ======= ======= ======= sections ======= ======= ======= */
+.section {
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid purple;
+}
+.container {
+    height: 220px;
+    background-color: Moccasin;
+    border: 2px solid darkorange;
+}
+.container > p {
+    margin: 20px;
+    color: purple
+}
+
+#header {
+    background-color: #ddd;
+}
+
+.label {
+    display: inline-block;
+    float: left;
+    margin-left: 20px;
+    color: red;
+}
+
+/* ======= ======= ======= box-sizing/hover ======= ======= ======= */
+/* ======= ======= ======= box-sizing/hover ======= ======= ======= */
+/* ======= ======= ======= box-sizing/hover ======= ======= ======= */
+
+#box1, #box2 {
+  position: relative;
+  float: left;
+  width: 80px;
+  height: 80px;
+  padding: 20px;
+  text-align: center;
+  border: 10px solid orange;
+}
+
+#box3, #box4, #box5, #box6 {
+  position: relative;
+  float: left;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  text-align: center;
+  border: 10px solid orange;
+}
+
+#boxA {
+    /*float: inherit;*/
+    width:100px;
+    height: 100px;
+    padding: 0;
+    image-orientation: left;
+    position: relative;
+    border: 3px solid orange;
+}
+
+#boxA: {
+  /*animation-fill-mode     // style when the animation is not playing (eg delay, after)*/
+      image-resolution: from-image;
+      forwards
+      backwards
+      both
+      initial
+      inherit
+    /*box-sizing: border-box;*/
+      /*margin-left: 20px;*/
+}
+
+/*#box1 {
+    box-sizing: content-box;
+    clear: both;
+    margin-left: 20px;
+}
+#box2 {
+    box-sizing: border-box;
+    margin-left: 80px;
+}
+#box1:hover {
+    color: red;
+    border: 10px solid red;
+}
+#box2:hover {
+    color: white;
+    background-color: red;*/
+}
+/* ======= ======= ======= transforms ======= ======= ======= */
+/* ======= ======= ======= transforms ======= ======= ======= */
+/* ======= ======= ======= transforms ======= ======= ======= */
+
+#box3 {
+    clear: both;
+    margin-left: 10px;
+    transform: translate(20px, 30px);
+}
+#box4 {
+    margin-left:40px;
+    transform: rotate(10deg);
+}
+#box5 {
+    margin-left:40px;
+    transform: skewX(20deg);
+}
+#box6 {
+    margin-left: 40px;
+    transform: matrix(1, -0.5, 0.7, 0.8, 2, 0);
+}
+
+/* ======= ======= ======= keyframes ======= ======= ======= */
+/* ======= ======= ======= keyframes ======= ======= ======= */
+/* ======= ======= ======= keyframes ======= ======= ======= */
+
+#boxA:hover {
+    animation-name: multiProps;
+    animation-duration: 5s;
+}
+@keyframes multiProps {
+    0%   {
+        color: white;
+        background-color: red;
+    }
+    25%  {
+        width: 800px;
+        height: 45px;
+        line-height: 45px;
+        margin: 5px;
+        color: blue;
+        transform: rotate(10deg);
+        background-color: yellow;
+    }
+    50%  {
+        width: 200px;
+        height: 100px;
+        margin-left: 10%;
+        color: yellow;
+        transform: rotate(-10deg);
+        background-color: blue;
+    }
+    100% {
+        color: lawngreen;
+        background-color: green;
+    }
+}
+
+/* ======= ======= ======= OVERLAY ANIMS ======= ======= ======= */
+/* ======= ======= ======= OVERLAY ANIMS ======= ======= ======= */
+/* ======= ======= ======= OVERLAY ANIMS ======= ======= ======= */
+
+#box7, #box8, #box9 {
+    float: left;
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 10px;
+    background-color: thistle;
+}
+#box7:hover .slidein {
+    width: 100%;
+    left: 0;
+}
+#box8:hover .slideup {
+    height: 100%;
+    bottom: 0;
+}
+#box9:hover .slideout {
+    width: 50%;
+    right: -50%;
+
+}
+
+/* ======= slidein ======= */
+.slidein {
+    position: absolute;
+    width: 0;
+    height: 100%;
+    bottom: 0;
+    left: 100%;
+    right: 0;
+    overflow: hidden;
+    background-color: #008CBA;
+    transition: 500ms ease;
+}
+
+/* ======= slideup ======= */
+.slideup {
+    position: absolute;
+    width: 100%;
+    height: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: #008CBA;
+    transition: 500ms ease;
+}
+
+/* ======= slideout ======= */
+.slideout {
+    position: absolute;
+    width: 0;
+    height: 100%;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    background-color: #008CBA;
+    transition: 500ms ease;
+}
+.text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 20px;
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    transform: translate(-50%, -50%);
+}
+
+
+/* ======= ======= ======= ======= ======= keyframe properties ======= ======= ======= ======= ======= */
+/*
+@keyframes
+animation-delay         // wait to start
+animation-direction     // reverse/alternate
+animation-duration      // how long
+animation-fill-mode     // style when the animation is not playing (eg delay, after)
+    none
+    forwards
+    backwards
+    both
+    initial
+    inherit
+animation-iteration-count     // how often to repeat
+animation-name                // call animation like function
+animation-play-state          // whethr running or paused
+animation-timing-function     // linear, ease, ease-in, ease-out, ease-in-out, cubic-bezier(n,n,n,n)
+*/
+
+
+
+/* ======= ======= ======= ARCHIVE ======= ======= ======= */
+/* ======= ======= ======= ARCHIVE ======= ======= ======= */
+/* ======= ======= ======= ARCHIVE ======= ======= ======= */
